@@ -1,0 +1,10 @@
+[
+	{ "keys": ["ctrl+enter"], "command": "sublime_shell" },
+	{
+		"keys": ["ctrl+shift+enter"],
+		"command": "sublime_shell",
+		"args": {
+			"panel": true
+		}
+	}
+]
