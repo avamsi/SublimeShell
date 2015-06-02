@@ -43,7 +43,7 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 				'msg': '[%s]\n$ %s\n' % (cdir, user_input)
 			}
 		)
-		if user_input == 'bye':
+		if user_input in ('bye', 'exit'):
 			cdir = out = window = None
 			return
 		if user_input.startswith('cd'):
