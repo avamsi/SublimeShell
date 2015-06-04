@@ -57,7 +57,7 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 
 	def on_done(self, user_input):
 		global cdir, out, window
-		if user_input in ('bye', 'exit'):
+		if user_input == 'exit':
 			cdir = out = window = None
 			return
 		if user_input.startswith('cd'):
