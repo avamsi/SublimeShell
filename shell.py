@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 import sublime, sublime_plugin
 import os, subprocess
 
