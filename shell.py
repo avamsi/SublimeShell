@@ -1,21 +1,22 @@
 import sublime, sublime_plugin
 import os, subprocess
 
-cdir = out = _panel = window = None
+_panel = cdir = out = window = None
 
 class ShellInsertCommand(sublime_plugin.TextCommand):
 	def run(self, edit, pos, msg):
 		self.view.insert(edit, pos, msg)
 
+class ShellReplaceCommand(sublime_plugin.TextCommand):
+	def run(self, edit, pos, msg):
+		self.view.replace(edit, self.view.line(pos), msg)
+
 class SublimeShellCommand(sublime_plugin.TextCommand):
 	def run(self, edit, panel=False):
-		global window, _panel
+		global _panel, cdir, out, window
 		_panel = panel
 		if window is None:
 			window = self.view.window()
-		window.show_input_panel('[Enter a Command]  █', '', self.on_done, None, None)
-	def on_done(self, user_input):
-		global cdir, out, window
 		if cdir is None:
 			fname = self.view.file_name()
 			cdir = os.path.dirname(fname)
@@ -25,7 +26,6 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 			os.chdir('E:')
 		if _panel:
 			out = window.get_output_panel('shell')
-			window.run_command('show_panel', {'panel': 'output.shell'})
 		if out is None:
 			out = window.new_file()
 			out.set_name('*Shell.Output*')
@@ -40,9 +40,21 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 		out.run_command(
 			'shell_insert', {
 				'pos': out.size(),
-				'msg': '[%s]\n$ %s\n' % (cdir, user_input)
+				'msg': '[%s]\n$ ' % cdir
 			}
 		)
+		window.show_input_panel('[Enter a Command]  █', '', self.on_done, self.on_change, None)
+
+	def on_change(self, user_input):
+		out.run_command(
+			'shell_replace', {
+				'pos': out.size(),
+				'msg': '$ %s' % user_input
+			}
+		)
+
+	def on_done(self, user_input):
+		global cdir, out, window
 		if user_input in ('bye', 'exit'):
 			cdir = out = window = None
 			return
@@ -65,9 +77,11 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 		out.run_command(
 			'shell_insert', {
 				'pos': out.size(),
-				'msg': msg + '\n'
+				'msg': '\n' + msg + '\n'
 			}
 		)
 		out.show(out.size())
-		if not _panel:
+		if _panel:
+			window.run_command('show_panel', {'panel': 'output.shell'})
+		else:
 			out.run_command('sublime_shell')
