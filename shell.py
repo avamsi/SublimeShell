@@ -27,7 +27,10 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
             window = self.view.window()
         if cdir is None:
             fname = self.view.file_name()
-            cdir = os.path.dirname(fname)
+            if fname is None:
+                cdir = home
+            else:
+                cdir = os.path.dirname(fname)
         try:
             os.chdir(cdir)
         except OSError:
