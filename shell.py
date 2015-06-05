@@ -71,6 +71,7 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
                 }
             )
             cdir = out = window = None
+            return
         if user_input.startswith('cd'):
             try:
                 os.chdir(user_input[2: ].strip())
