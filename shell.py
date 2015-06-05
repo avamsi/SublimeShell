@@ -3,11 +3,12 @@
 import sublime, sublime_plugin
 import os, subprocess
 
-_panel = aliases = cdir = out = window = None
+_panel = aliases = cdir = home = out = window = None
 
 def plugin_loaded():
-    global aliases
+    global aliases, home
     settings = sublime.load_settings('Shell.sublime-settings')
+    home = settings.get('home', os.path.expanduser('~'))
     aliases = settings.get('aliases')
 
 class ShellInsertCommand(sublime_plugin.TextCommand):
@@ -30,7 +31,7 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
         try:
             os.chdir(cdir)
         except OSError:
-            os.chdir('E:')
+            os.chdir(home)
         if _panel:
             out = window.get_output_panel('shell')
         if out is None:
