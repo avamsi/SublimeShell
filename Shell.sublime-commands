@@ -1,0 +1,13 @@
+[
+    {
+        "caption": "Shell: Open Shell",
+        "command": "sublime_shell"
+    },
+    {
+        "caption": "Shell: Execute a Command",
+        "command": "sublime_shell",
+        "args": {
+            "panel": true
+        }
+    }
+]
