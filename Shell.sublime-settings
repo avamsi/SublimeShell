@@ -1,6 +1,9 @@
+/*
+save aliases to Shell - User settings
 {
 	"aliases": {
 		"bye": "exit",
 		"..": "cd.."
 	}
 }
+*/
