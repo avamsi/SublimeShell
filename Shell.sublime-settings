@@ -4,6 +4,7 @@ save aliases to Shell - User settings
 	"aliases": {
 		"bye": "exit",
 		"..": "cd.."
-	}
+	},
+	"home": "your_home_dir"
 }
 */
