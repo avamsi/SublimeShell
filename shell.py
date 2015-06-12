@@ -66,7 +66,8 @@ class SublimeShellCommand(sublime_plugin.TextCommand):
 
     def on_done(self, user_input):
         global cdir, out, window
-        user_input = ' '.join(aliases.get(cmd, cmd) for cmd in user_input.split())
+        if aliases:
+            user_input = ' '.join(aliases.get(cmd, cmd) for cmd in user_input.split())
         if user_input == 'exit':
             out.run_command(
                 'shell_insert', {
