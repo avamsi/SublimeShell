@@ -6,5 +6,5 @@ Download and extract to your packages folder. (`Menu` &#10153; `Preferences` &#1
 
 ##### Using [Package Control](https://packagecontrol.io/installation):
   1. Open Command Palette. (`ctrl+shift+p`)
-  2. Type `add repo`(short for `Package Control: Add Repository`) and add this [link](https://github.com/krikx/SublimeShell/).
-  3. Open Command Palette &#10153; `pip`(short for `Package Control: Install Package`) &#10153; `SublimeShell`.
+  2. Type `add repo` and add this [link](https://github.com/krikx/SublimeShell/).
+  3. Open Command Palette, type `pip`(short for `Package Control: Install Package`) and then `SublimeShell`.
