@@ -15,13 +15,8 @@ A small plugin that provides a shell interface to Sublime Text.
   Choose SublimeShell
   ```
 
-### Manual Installation
-1. Go to the "Packages" directory.
+4. Or alternately just clone this repository in the "packages" folder.
   ```
-  Preferences ❯ Browse Packages…
-  ```
-
-2. Clone this repository.
-  ```
+  Preferences ❯ Browse Packages...
   git clone https://github.com/krikx/SublimeShell
   ```
