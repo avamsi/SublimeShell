@@ -20,3 +20,7 @@ A small plugin that provides a shell interface to Sublime Text.
   Preferences ❯ Browse Packages...
   git clone https://github.com/krikx/SublimeShell
   ```
+
+### Key Bindings
+* Use <kbd>ctrl</kbd> + <kbd>enter</kbd> to run a series of commands.
+* Use <kbd>ctrl</kbd> + <kbd>shift</kbd> + <kbd>enter</kbd> to run a single command.
